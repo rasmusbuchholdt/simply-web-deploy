@@ -23,7 +23,7 @@ jobs:
           server-username: ${{ secrets.SERVER_USERNAME }}
           server-password: ${{ secrets.SERVER_PASSWORD }}
           source-path: '\build\'
-          target-path: '\my-sub-directory\'
+          target-path: '/my-sub-directory/'
 ```
 
 ---
