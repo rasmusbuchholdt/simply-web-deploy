@@ -34,7 +34,12 @@ jobs:
 ---
 
 ### Setup
-Work in progress..
+1. Locate the reposity you want to automate Simply web deployment in.
+2. Select the `Actions` tab.
+3. Select `Set up a workflow yourself`.
+4. Copy paste one of the example into your .yml workflow file and commit the file.
+5. All the examples takes advantage of `Secrets`, so make sure you have added the required secrets to your repository. Instructions on this can be found in the [settings](#settings) section.
+6. Once you have added your secrets, your new workflow should be running on every push to the branch.
 
 ---
 
