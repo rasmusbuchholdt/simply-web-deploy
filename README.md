@@ -22,7 +22,8 @@ jobs:
           server-computer-name: ${{ secrets.SERVER_COMPUTER_NAME }}
           server-username: ${{ secrets.SERVER_USERNAME }}
           server-password: ${{ secrets.SERVER_PASSWORD }}
-          source-path: "daddy"
+          source-path: '\build\'
+          target-path: '\my-sub-directory\'
 ```
 
 ---
