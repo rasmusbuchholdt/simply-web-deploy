@@ -15,7 +15,7 @@ inputs:
     required: true
   source-path:
     description: "The source directory for payload"
-    required: true
+    required: false
     default: '\publish\'
   target-path:
     description: "The target directory for payload"
