@@ -33,3 +33,6 @@ runs:
     - name: Start Application Pool
       shell: cmd
       run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="${{ inputs.website-name }}",recycleMode="StartAppPool",computerName="${{ inputs.server-computer-name }}/MsDeploy.axd?site=${{ inputs.website-name }}",username="${{ inputs.server-username }}",password="${{ inputs.server-password }}",AuthType="Basic"'
+branding:
+  icon: "upload-cloud"
+  color: "purple"
