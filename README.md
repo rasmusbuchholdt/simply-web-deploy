@@ -1,5 +1,9 @@
 ## Simply Web Deploy
-Automatically deploy your projects to Simply with Web Deploy using this GitHub action.
+Automatically deploy your projects to Simply with Web Deploy using this GitHub action. 
+
+This action utilizes Microsoft’s own `Web Deploy 3.0+` executable, which you can read everything about [here](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/deploying-web-packages). Further documentation of the rules and parameters can also be seen [here](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/dd568992(v=ws.10)).
+
+At this moment the action does not support deletion of target directory files before syncing - Meaning that it will only overwrite existing files and leave all other files untouched. Eventually a optional parameter will be added to support this.
 
 ---
 
@@ -37,7 +41,7 @@ jobs:
 1. Locate the repository you want to automate Simply web deployment in.
 2. Select the `Actions` tab.
 3. Select `Set up a workflow yourself`.
-4. Copy paste one of the example into your .yml workflow file and commit the file.
+4. Copy paste one of the examples into your .yml workflow file and commit the file.
 5. All the examples takes advantage of `Secrets`, so make sure you have added the required secrets to your repository. Instructions on this can be found in the [settings](#settings) section.
 6. Once you have added your secrets, your new workflow should be running on every push to the branch.
 
