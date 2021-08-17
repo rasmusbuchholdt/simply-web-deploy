@@ -20,7 +20,7 @@ inputs:
   target-path:
     description: "The target directory for payload"
     required: false
-    default: ""
+    default: ''
 runs:
   using: "composite"
   steps:
