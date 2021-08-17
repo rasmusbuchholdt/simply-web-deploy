@@ -1,0 +1,35 @@
+name: "Simply MSDeploy"
+description: "Deploy projects directly to Simply IIS"
+inputs:
+  website-name:
+    description: "IIS website name"
+    required: true
+  server-computer-name:
+    description: "IIS server computer name"
+    required: true
+  server-username:
+    description: "IIS server username"
+    required: true
+  server-password:
+    description: "IIS server password"
+    required: true
+  source-path:
+    description: "The source directory for payload"
+    required: true
+    default: '\publish\'
+  target-path:
+    description: "The target directory for payload"
+    required: false
+    default: ""
+runs:
+  using: "composite"
+  steps:
+    - name: Stop Application Pool
+      shell: cmd
+      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="${{ inputs.website-name }}",recycleMode="StopAppPool",computerName="${{ inputs.server-computer-name }}/MsDeploy.axd?site=${{ inputs.website-name }}",username="${{ inputs.server-username }}",password="${{ inputs.server-password }}",AuthType="Basic"'
+    - name: Deploy Application
+      shell: cmd
+      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:contentPath="%CD%${{ inputs.website-name }}"${{ inputs.source-path }}" -dest:contentPath="${{ inputs.target-path }}",computerName="${{ inputs.server-computer-name }}/MsDeploy.axd?site=${{ inputs.website-name }}",username="${{ inputs.server-username }}",password="${{ inputs.server-password }}",authtype="Basic" -enableRule:DoNotDeleteRule'
+    - name: Start Application Pool
+      shell: cmd
+      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="${{ inputs.website-name }}",recycleMode="StartAppPool",computerName="${{ inputs.server-computer-name }}/MsDeploy.axd?site=${{ inputs.website-name }}",username="${{ inputs.server-username }}",password="${{ inputs.server-password }}",AuthType="Basic"'
