@@ -29,12 +29,12 @@ jobs:
 ---
 
 ### Requirements
-- Administrator access to the simply.com account, in order to access the required credentials.
+- Administrator access to the simply.com account, to access the required credentials.
 
 ---
 
 ### Setup
-1. Locate the reposity you want to automate Simply web deployment in.
+1. Locate the repository you want to automate Simply web deployment in.
 2. Select the `Actions` tab.
 3. Select `Set up a workflow yourself`.
 4. Copy paste one of the example into your .yml workflow file and commit the file.
@@ -44,9 +44,9 @@ jobs:
 ---
 
 ### Settings
-These settings can be either be added directly to your .yml config file or referenced from your GitHub repository `Secrets`. I strongly recommend storing any private values like `server-username` and `server-password` in `Secrets`, regardless if the repository is private or not.
+These settings can be either be added directly to your .yml config file or referenced from your GitHub repository `Secrets`. I strongly recommend storing any private values like `server-username` and `server-password` in `Secrets`, regardless of if the repository is private or not.
 
-In order to add a secret to your repository go to the `Settings` tab, followed by `Secrets`. Here you can add your secrets and reference to them in your .yml file.
+To add a secret to your repository go to the `Settings` tab, followed by `Secrets`. Here you can add your secrets and reference to them in your .yml file.
 
 | Setting | Required | Example | Default Value | Description |
 |-|-|-|-|-|
