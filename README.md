@@ -38,6 +38,21 @@ Work in progress..
 
 ---
 
+### Settings
+These settings can be either be added directly to your .yml config file or referenced from your GitHub repository `Secrets`. I strongly recommend storing any private values like `server-username` and `server-password` in `Secrets`, regardless if the repository is private or not.
+
+In order to add a secret to your repository go to the `Settings` tab, followed by `Secrets`. Here you can add your secrets and reference to them in your .yml file.
+
+| Setting | Required | Example | Default Value | Description |
+|-|-|-|-|-|
+| `website-name`          | Yes | `sub.example.com` | | Deployment destination server |
+| `server-computer-name`  | Yes | `https://nt8.unoeuro.com:8172` | | Computer name, including the port - Find yours [here](https://www.simply.com/dk/support/faq/asp/236/)|
+| `server-username`       | Yes | `username`        | | Your Simply FTP username |
+| `server-password`       | Yes | `password`        | | Your Simply FTP password |
+| `source-path`           | No | `\my-build\dist\` | `\publish\` | The path to the source directory that will be deployed |
+| `target-path`           | No | `/sub-directory/`  | `''` (Root of your website)  | The path where the source directory will be deployed (relative to website root) |
+---
+
 # Common Examples
 #### Build and Publish .NET Core API
 
