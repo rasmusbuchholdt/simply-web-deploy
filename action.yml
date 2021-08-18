@@ -20,19 +20,38 @@ inputs:
   target-path:
     description: "The target directory for payload"
     required: false
-    default: ''
+    default: '""'
 runs:
   using: "composite"
   steps:
     - name: Stop Application Pool
-      shell: cmd
-      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="${{ inputs.website-name }}",recycleMode="StopAppPool",computerName="${{ inputs.server-computer-name }}/MsDeploy.axd?site=${{ inputs.website-name }}",username="${{ inputs.server-username }}",password="${{ inputs.server-password }}",AuthType="Basic"'
+      shell: pwsh
+      run: >
+        .\Scripts\Set-ApplicationPool.ps1
+        StopAppPool
+        ${{ inputs.website-name }}
+        ${{ inputs.server-computer-name }}
+        ${{ inputs.server-username }}
+        ${{ inputs.server-password }}
     - name: Deploy Application
-      shell: cmd
-      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:contentPath="%CD%${{ inputs.source-path }}" -dest:contentPath="${{ inputs.website-name }}${{ inputs.target-path }}",computerName="${{ inputs.server-computer-name }}/MsDeploy.axd?site=${{ inputs.website-name }}",username="${{ inputs.server-username }}",password="${{ inputs.server-password }}",authtype="Basic" -enableRule:DoNotDeleteRule'
+      shell: pwsh
+      run: >
+        .\Scripts\Deploy-ApplicationPackage.ps1
+        ${{ inputs.source-path }}
+        ${{ inputs.target-path }}
+        ${{ inputs.website-name }}
+        ${{ inputs.server-computer-name }}
+        ${{ inputs.server-username }}
+        ${{ inputs.server-password }}
     - name: Start Application Pool
-      shell: cmd
-      run: '"C:/Program Files (x86)/IIS/Microsoft Web Deploy V3/msdeploy.exe" -verb:sync -allowUntrusted -source:recycleApp -dest:recycleApp="${{ inputs.website-name }}",recycleMode="StartAppPool",computerName="${{ inputs.server-computer-name }}/MsDeploy.axd?site=${{ inputs.website-name }}",username="${{ inputs.server-username }}",password="${{ inputs.server-password }}",AuthType="Basic"'
+      shell: pwsh
+      run: >
+        .\Scripts\Set-ApplicationPool.ps1
+        StartAppPool
+        ${{ inputs.website-name }}
+        ${{ inputs.server-computer-name }}
+        ${{ inputs.server-username }}
+        ${{ inputs.server-password }}
 branding:
   icon: "upload-cloud"
   color: "purple"
