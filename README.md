@@ -3,8 +3,6 @@ Automatically deploy your projects to Simply with Web Deploy using this GitHub a
 
 This action utilizes Microsoft’s own `Web Deploy 3.0+` executable, which you can read everything about [here](https://docs.microsoft.com/en-us/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/deploying-web-packages). Further documentation of the rules and parameters can also be seen [here](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2008-r2-and-2008/dd568992(v=ws.10)).
 
-At this moment the action does not support deletion of target directory files before syncing - Meaning that it will only overwrite existing files and leave all other files untouched. Eventually a optional parameter will be added to support this.
-
 ---
 
 ### Example
@@ -58,8 +56,9 @@ To add a secret to your repository go to the `Settings` tab, followed by `Secret
 | `server-computer-name`  | Yes | `https://nt8.unoeuro.com:8172` | | Computer name, including the port - Find yours [here](https://www.simply.com/dk/support/faq/asp/236/)|
 | `server-username`       | Yes | `username`        | | Your Simply FTP username |
 | `server-password`       | Yes | `password`        | | Your Simply FTP password |
-| `source-path`           | No | `\my-build\dist\` | `\publish\` | The path to the source directory that will be deployed |
+| `source-path`           | No | `\my-build\dist\`  | `\publish\` | The path to the source directory that will be deployed |
 | `target-path`           | No | `/sub-directory/`  | `''` (Root of your website)  | The path where the source directory will be deployed (relative to website root) |
+| `target-delete`         | No | `true`            | `false` | Delete files on the target computer that do not exist on the source computer |
 ---
 
 # Common Examples
