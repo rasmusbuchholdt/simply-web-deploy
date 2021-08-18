@@ -17,6 +17,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
+
       - name: Deploy to Simply
         uses: RasmusBuchholdt/simply-web-deploy@2.0.0
         with:
@@ -62,7 +63,7 @@ To add a secret to your repository go to the `Settings` tab, followed by `Secret
 ---
 
 # Common Examples
-#### Build and Publish .NET Core API
+#### Build and publish .NET Core API
 
 ```yml
 name: Build, publish and deploy project to Simply
@@ -74,6 +75,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
+
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v1
         with:
@@ -98,4 +100,30 @@ jobs:
           server-computer-name: ${{ secrets.SERVER_COMPUTER_NAME }}
           server-username: ${{ secrets.SERVER_USERNAME }}
           server-password: ${{ secrets.SERVER_PASSWORD }}
+```
+
+#### Build and publish Angular application
+
+```yml
+name: Build, publish and deploy project to Simply
+
+on: [push]
+
+jobs:
+  build_and_deploy:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - run: npm ci && ng build --configuration production --output-path=dist
+
+      - name: Deploy to Simply
+        uses: RasmusBuchholdt/simply-web-deploy@2.0.0
+        with:
+          website-name: ${{ secrets.WEBSITE_NAME }}
+          server-computer-name: ${{ secrets.SERVER_COMPUTER_NAME }}
+          server-username: ${{ secrets.SERVER_USERNAME }}
+          server-password: ${{ secrets.SERVER_PASSWORD }}
+          source-path: '\dist\'
+          target-delete: true
 ```
