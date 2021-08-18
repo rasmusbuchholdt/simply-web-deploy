@@ -31,7 +31,7 @@ runs:
     - name: Stop Application Pool
       shell: pwsh
       run: >
-        .\Scripts\Set-ApplicationPool.ps1
+        ${{ github.action_path }}/Scripts/Set-ApplicationPool.ps1
         StopAppPool
         ${{ inputs.website-name }}
         ${{ inputs.server-computer-name }}
@@ -40,7 +40,7 @@ runs:
     - name: Deploy Application
       shell: pwsh
       run: >
-        .\Scripts\Deploy-ApplicationPackage.ps1
+        ${{ github.action_path }}/Scripts/Deploy-ApplicationPackage.ps1
         ${{ inputs.source-path }}
         ${{ inputs.target-path }}
         ${{ inputs.website-name }}
@@ -51,7 +51,7 @@ runs:
     - name: Start Application Pool
       shell: pwsh
       run: >
-        .\Scripts\Set-ApplicationPool.ps1
+        ${{ github.action_path }}/Scripts/Set-ApplicationPool.ps1
         StartAppPool
         ${{ inputs.website-name }}
         ${{ inputs.server-computer-name }}
