@@ -21,6 +21,10 @@ inputs:
     description: "The target directory for payload"
     required: false
     default: '""'
+  target-delete:
+    description: "Delete files on the destination computer that do not exist on the source computer"
+    required: false
+    default: "false"
 runs:
   using: "composite"
   steps:
@@ -43,6 +47,7 @@ runs:
         ${{ inputs.server-computer-name }}
         ${{ inputs.server-username }}
         ${{ inputs.server-password }}
+        ${{ inputs.target-delete }}
     - name: Start Application Pool
       shell: pwsh
       run: >

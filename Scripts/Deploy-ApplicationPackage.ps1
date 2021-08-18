@@ -29,4 +29,9 @@ $targetPath = $recycleApp + $destination
         "AuthType='Basic'"
     )
 
+if ($delete -NotMatch "true")
+{
+    $msdeployArguments.Add("-enableRule:DoNotDeleteRule")
+}
+
 & $msdeploy $msdeployArguments
