@@ -60,7 +60,7 @@ To add a secret to your repository go to the `Settings` tab, followed by `Secret
 | `source-path`           | No | `\my-build\dist\`  | `\publish\` | The path to the source directory that will be deployed |
 | `target-path`           | No | `/sub-directory/`  | `''` (Root of your website)  | The path where the source directory will be deployed (relative to website root) |
 | `target-delete`         | No | `true`             | `false` | Delete files on the target computer that do not exist on the source computer |
-| `skip-directory-path`   | No | `\\App_Data`       | `'''` | Skip any operations on a specific directory |
+| `skip-directory-path`   | No | `\\App_Data`       | `''` | Skip any operations on a specific directory |
 ---
 
 # Common examples
