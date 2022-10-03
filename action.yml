@@ -52,7 +52,7 @@ runs:
         ${{ inputs.server-username }}
         ${{ inputs.server-password }}
         ${{ inputs.target-delete }}
-        ${{ skip-directory-path }}
+        ${{ inputs.skip-directory-path }}
     - name: Start Application Pool
       shell: pwsh
       run: >
