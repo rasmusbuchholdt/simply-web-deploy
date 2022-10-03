@@ -8,6 +8,7 @@ $computerName = $args[3]
 $username = $args[4]
 $password = $args[5]
 $delete = $args[6]
+$skipDirectory = $args[7]
 
 $computerNameArgument = $computerName + '/MsDeploy.axd?site=' + $recycleApp
 
@@ -32,6 +33,11 @@ $targetPath = $recycleApp + $destination
 if ($delete -NotMatch "true")
 {
     $msdeployArguments.Add("-enableRule:DoNotDeleteRule")
+}
+
+if ($skipDirectory)
+{
+    $msdeployArguments.Add("-skip:Directory=${skipDirectory}")
 }
 
 & $msdeploy $msdeployArguments

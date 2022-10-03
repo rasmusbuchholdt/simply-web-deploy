@@ -25,6 +25,10 @@ inputs:
     description: "Delete files on the destination computer that do not exist on the source computer"
     required: false
     default: "false"
+  skip-directory-path:
+    description: "Target a directory that any actions will be skipped on"
+    required: false
+    default: '""'
 runs:
   using: "composite"
   steps:
@@ -48,6 +52,7 @@ runs:
         ${{ inputs.server-username }}
         ${{ inputs.server-password }}
         ${{ inputs.target-delete }}
+        ${{ inputs.skip-directory-path }}
     - name: Start Application Pool
       shell: pwsh
       run: >
