@@ -49,7 +49,7 @@ To add a secret to your repository go to the `Settings` tab, followed by `Secret
 | `source-path`         | No       | `\my-build\dist\`              | `\publish\`               | The path to the source directory that will be deployed (relative to project root) |
 | `target-path`         | No       | `/sub-directory/`              | `''` (Root of your website) | The path where the source directory will be deployed (relative to website root) |
 | `target-delete`       | No       | `true`                         | `false`                   | Delete files on the target computer that do not exist on the source computer |
-| `skip-directory-path` | No       | `\App_Data,logs,temp`          | `''`                      | Comma-separated list of directories to skip during deployment |
+| `skip-directory-paths`| No       | `\App_Data,logs,temp`          | `''`                      | Comma-separated list of directories to skip during deployment |
 | `skip-files`          | No       | `web.config,appsettings.json`  | `''`                      | Comma-separated list of specific files to skip during deployment |
 | `skip-patterns`       | No       | `.*\.log$,.*\.bak$`            | `''`                      | Comma-separated list of regex patterns to skip during deployment |
 
