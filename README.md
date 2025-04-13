@@ -131,3 +131,51 @@ jobs:
           # Angular generates random file names on build so we want to delete target
           target-delete: true
 ```
+
+#### Build and publish React application
+
+```yml
+name: Build, publish and deploy project to FTP server
+
+on: [push]
+
+jobs:
+  build_and_deploy:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache node modules
+        id: cache-node-modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        with:
+          node-version: 20
+
+      - name: npm install
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm install
+
+      - name: Build Project
+        run: |
+          $env:PUBLIC_URL = "${{ env.PUBLIC_URL }}"
+          npm run build
+        shell: pwsh
+
+      - name: Deploy to FTP server
+        uses: RasmusBuchholdt/simply-web-deploy@2.2.0
+        with:
+          website-name: ${{ secrets.WEBSITE_NAME }}
+          server-computer-name: ${{ secrets.SERVER_COMPUTER_NAME }}
+          server-username: ${{ secrets.SERVER_USERNAME }}
+          server-password: ${{ secrets.SERVER_PASSWORD }}
+          source-path: '\build\'
+          target-delete: true
+          skip-directory-path: '\\.well-known'
+```
