@@ -6,10 +6,22 @@ $recycleApp = $args[2]
 $computerName = $args[3]
 $username = $args[4]
 $password = $args[5]
-$delete = $args | Where-Object { $args.IndexOf($_) -eq 6 } | Select-Object -First 1
+$deleteTarget = $args | Where-Object { $args.IndexOf($_) -eq 6 } | Select-Object -First 1
 $skipDirectory = $args | Where-Object { $args.IndexOf($_) -eq 7 } | Select-Object -First 1
 $skipFilesInput = $args | Where-Object { $args.IndexOf($_) -eq 8 } | Select-Object -First 1
 $skipPatternsInput = $args | Where-Object { $args.IndexOf($_) -eq 9 } | Select-Object -First 1
+
+Write-Host "------------------------------------"
+Write-Host "Starting deployment with parameters:"
+Write-Host "Source:               $source"
+Write-Host "Destination:          $destination"
+Write-Host "Recycle App:          $recycleApp"
+Write-Host "Computer Name:        $computerName"
+Write-Host "Delete target:        $deleteTarget"
+Write-Host "Skip Directory:       $skipDirectory"
+Write-Host "Skip Files:           $skipFilesInput"
+Write-Host "Skip Regex Patterns:  $skipPatternsInput"
+Write-Host "------------------------------------"
 
 $computerNameArgument = "$computerName/MsDeploy.axd?site=$recycleApp"
 
@@ -31,7 +43,7 @@ $targetPath = "$recycleApp$destination"
       "AuthType='Basic'"
     )
 
-if ($delete -NotMatch "true") {
+if ($deleteTarget -NotMatch "true") {
   $msdeployArguments.Add("-enableRule:DoNotDeleteRule")
 }
 
