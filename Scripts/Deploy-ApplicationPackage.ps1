@@ -7,7 +7,7 @@ $computerName = $args[3]
 $username = $args[4]
 $password = $args[5]
 $deleteTarget = $args | Where-Object { $args.IndexOf($_) -eq 6 } | Select-Object -First 1
-$skipDirectoriesInput = $args | Where-Object { $args.IndexOf($_) -eq 7 } | Select-Object -First 1
+$skipDirectoryPathsInput = $args | Where-Object { $args.IndexOf($_) -eq 7 } | Select-Object -First 1
 $skipFilesInput = $args | Where-Object { $args.IndexOf($_) -eq 8 } | Select-Object -First 1
 $skipPatternsInput = $args | Where-Object { $args.IndexOf($_) -eq 9 } | Select-Object -First 1
 
@@ -18,7 +18,7 @@ Write-Host "Destination:          $destination"
 Write-Host "Recycle App:          $recycleApp"
 Write-Host "Computer Name:        $computerName"
 Write-Host "Delete target:        $deleteTarget"
-Write-Host "Skip Directories:     $skipDirectoriesInput"
+Write-Host "Skip Directory Paths: $skipDirectoryPathsInput"
 Write-Host "Skip Files:           $skipFilesInput"
 Write-Host "Skip Regex Patterns:  $skipPatternsInput"
 Write-Host "------------------------------------"
@@ -47,8 +47,8 @@ if ($deleteTarget -NotMatch "true") {
   $msdeployArguments.Add("-enableRule:DoNotDeleteRule")
 }
 
-if ($skipDirectoriesInput) {
-  $skipDirs = $skipDirectoriesInput -split ","
+if ($skipDirectoryPathsInput) {
+  $skipDirs = $skipDirectoryPathsInput -split ","
   foreach ($dir in $skipDirs) {
     $msdeployArguments.Add("-skip:Directory=$dir")
   }

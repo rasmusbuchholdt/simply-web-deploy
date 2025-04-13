@@ -1,5 +1,6 @@
 name: "Simply Web Deploy"
 description: "Deploy projects directly to Simply IIS"
+
 inputs:
   website-name:
     description: "IIS website name"
@@ -25,10 +26,19 @@ inputs:
     description: "Delete files on the destination computer that do not exist on the source computer"
     required: false
     default: "false"
-  skip-directory-path:
-    description: "Target a directory that any actions will be skipped on"
+  skip-directory-paths:
+    description: "Comma-separated list of directories to skip during deployment"
     required: false
     default: '""'
+  skip-files:
+    description: "Comma-separated list of specific files to skip during deployment"
+    required: false
+    default: '""'
+  skip-patterns:
+    description: "Comma-separated list of regex patterns to skip during deployment"
+    required: false
+    default: '""'
+
 runs:
   using: "composite"
   steps:
@@ -41,6 +51,7 @@ runs:
         ${{ inputs.server-computer-name }}
         ${{ inputs.server-username }}
         ${{ inputs.server-password }}
+
     - name: Deploy Application
       shell: pwsh
       run: >
@@ -52,7 +63,10 @@ runs:
         ${{ inputs.server-username }}
         ${{ inputs.server-password }}
         ${{ inputs.target-delete }}
-        ${{ inputs.skip-directory-path }}
+        ${{ inputs.skip-directory-paths }}
+        ${{ inputs.skip-files }}
+        ${{ inputs.skip-patterns }}
+
     - name: Start Application Pool
       shell: pwsh
       run: >
@@ -62,6 +76,7 @@ runs:
         ${{ inputs.server-computer-name }}
         ${{ inputs.server-username }}
         ${{ inputs.server-password }}
+
 branding:
   icon: "upload-cloud"
   color: "purple"
