@@ -107,7 +107,7 @@ jobs:
 #### Build and publish Angular application
 
 ```yml
-name: Build, publish and deploy project to Simply
+name: Build, publish and deploy project to FTP server
 
 on: [push]
 
@@ -115,18 +115,19 @@ jobs:
   build_and_deploy:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
 
       - name: Build application
       - run: npm ci && ng build --configuration production --output-path=dist
 
       - name: Deploy to Simply
-        uses: rasmusbuchholdt/simply-web-deploy@2.1.0
+        uses: rasmusbuchholdt/simply-web-deploy@2.2.0
         with:
           website-name: ${{ secrets.WEBSITE_NAME }}
           server-computer-name: ${{ secrets.SERVER_COMPUTER_NAME }}
           server-username: ${{ secrets.SERVER_USERNAME }}
           server-password: ${{ secrets.SERVER_PASSWORD }}
           source-path: '\dist\'
+          # Angular generates random file names on build so we want to delete target
           target-delete: true
 ```
