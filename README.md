@@ -51,17 +51,19 @@ These settings can be either be added directly to your .yml config file or refer
 
 To add a secret to your repository go to the `Settings` tab, followed by `Secrets`. Here you can add your secrets and reference to them in your .yml file.
 
-| Setting | Required | Example | Default Value | Description |
-|-|-|-|-|-|
-| `website-name`          | Yes | `sub.example.com` | | Deployment destination server |
-| `server-computer-name`  | Yes | `https://nt8.unoeuro.com:8172` | | Computer name, including the port - Find yours [here](https://www.simply.com/dk/support/faq/asp/236/)|
-| `server-username`       | Yes | `username`        | | Your Simply FTP username |
-| `server-password`       | Yes | `password`        | | Your Simply FTP password |
-| `source-path`           | No | `\my-build\dist\`  | `\publish\` | The path to the source directory that will be deployed |
-| `target-path`           | No | `/sub-directory/`  | `''` (Root of your website)  | The path where the source directory will be deployed (relative to website root) |
-| `target-delete`         | No | `true`             | `false` | Delete files on the target computer that do not exist on the source computer |
-| `skip-directory-path`   | No | `\\App_Data`       | `''` | Skip any operations on a specific directory |
----
+| Setting               | Required | Example                        | Default Value             | Description |
+|-----------------------|----------|--------------------------------|---------------------------|-------------|
+| `website-name`        | Yes      | `sub.example.com`              |                           | Deployment destination server |
+| `server-computer-name`| Yes      | `https://nt8.unoeuro.com:8172` |                           | Computer name, including the port - Find yours [here](https://www.simply.com/dk/support/faq/asp/236/) if you are using Simply.com |
+| `server-username`     | Yes      | `username`                     |                           | Your FTP username |
+| `server-password`     | Yes      | `password`                     |                           | Your FTP password |
+| `source-path`         | No       | `\my-build\dist\`              | `\publish\`               | The path to the source directory that will be deployed (relative to project root) |
+| `target-path`         | No       | `/sub-directory/`              | `''` (Root of your website) | The path where the source directory will be deployed (relative to website root) |
+| `target-delete`       | No       | `true`                         | `false`                   | Delete files on the target computer that do not exist on the source computer |
+| `skip-directory-path` | No       | `\App_Data,logs,temp`          | `''`                      | Comma-separated list of directories to skip during deployment |
+| `skip-files`          | No       | `web.config,appsettings.json`  | `''`                      | Comma-separated list of specific files to skip during deployment |
+| `skip-patterns`       | No       | `.*\.log$,.*\.bak$`            | `''`                      | Comma-separated list of regex patterns to skip during deployment |
+
 
 # Common examples
 #### Build and publish .NET Core API
