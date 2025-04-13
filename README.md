@@ -177,5 +177,4 @@ jobs:
           server-password: ${{ secrets.SERVER_PASSWORD }}
           source-path: '\build\'
           target-delete: true
-          skip-directory-path: '\\.well-known'
 ```
