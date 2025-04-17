@@ -1,15 +1,15 @@
 $msdeploy = "C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe"
 
-$source = $args[0]
-$destination = $args[1]
-$recycleApp = $args[2]
-$computerName = $args[3]
-$username = $args[4]
-$password = $args[5]
-$deleteTarget = $args | Where-Object { $args.IndexOf($_) -eq 6 } | Select-Object -First 1
-$skipDirectoryPathsInput = $args | Where-Object { $args.IndexOf($_) -eq 7 } | Select-Object -First 1
-$skipFilesInput = $args | Where-Object { $args.IndexOf($_) -eq 8 } | Select-Object -First 1
-$skipPatternsInput = $args | Where-Object { $args.IndexOf($_) -eq 9 } | Select-Object -First 1
+$source                 = $args[0]
+$destination            = $args[1]
+$recycleApp             = $args[2]
+$computerName           = $args[3]
+$username               = $args[4]
+$password               = $args[5]
+$deleteTarget           = $args[6]
+$skipDirectoryPathsInput= $args[7]
+$skipFilesInput         = $args[8]
+$skipPatternsInput      = $args[9]
 
 Write-Host "------------------------------------"
 Write-Host "Starting deployment with parameters:"
