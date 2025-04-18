@@ -1,5 +1,5 @@
 name: "Simply Web Deploy"
-description: "Deploy projects directly to Simply IIS"
+description: "Deploy projects with Web Deploy"
 
 inputs:
   website-name:
